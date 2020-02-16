@@ -1,0 +1,14 @@
+﻿@model List<Entry>
+
+@foreach (Entry item in Model)
+{
+    <div class="item">
+        <h2>@item.Title</h2>
+        <p>@item.Context</p>
+        <div class="tags">
+            <div class="tag">@item.Category.ToString()</div>
+            <div class="tag">@item.Category.ToString()</div>
+            <div class="tag">@item.Category.ToString()</div>
+        </div>
+    </div>
+}

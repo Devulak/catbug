@@ -1,0 +1,85 @@
+.hero
+{
+	position: relative;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.hero canvas
+{
+	display: block;
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	background-color: #111111;
+}
+.hero > svg
+{
+	margin: 0 auto;
+	display: block;
+	max-width: 6rem;
+	max-height: 6rem;
+}
+.hero nav
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	display: flex;
+	justify-content: center;
+	padding: 0 .5rem;
+}
+.hero nav a
+{
+	display: block;
+	position: relative;
+	width: 5rem;
+	height: 4rem;
+	color: #0a0a0a;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.hero nav a.noctro:hover
+{
+	color: #E65D50;
+}
+.hero nav a.github:hover
+{
+	color: #999;
+}
+.hero nav a:before
+{
+	content: "";
+	position: absolute;
+	bottom: .5rem;
+	height: .25rem;
+	border-radius: .125rem;
+	background-color: currentColor;
+	left: .5rem;
+	right: .5rem;
+	transition: background-color .2s;
+}
+.hero nav a svg
+{
+	fill: currentColor;
+	/*fill: rgba(255, 255, 255, .1);*/
+	display: block;
+	padding: 0 .5rem 1.5rem;
+
+	transition: transform .2s, opacity .2s;
+	transform: translateY(0);
+}
+.hero nav a:hover svg
+{
+	transform: translateY(-1rem);
+	opacity: 1;
+}
