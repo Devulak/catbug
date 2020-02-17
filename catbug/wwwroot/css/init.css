@@ -1,48 +1,23 @@
-/* Fonts */
-@font-face {
-    font-family: Open Sans;
-    font-weight: 300;
-    src: url(../fonts/OpenSans/OpenSans-Light.ttf);
-}
-
-@font-face {
-    font-family: Open Sans;
-    src: url(../fonts/OpenSans/OpenSans-Regular.ttf);
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-weight: 600;
-    src: url(../fonts/OpenSans/OpenSans-Semibold.ttf);
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-weight: 700;
-    src: url(../fonts/OpenSans/OpenSans-Bold.ttf);
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-weight: 800;
-    src: url(../fonts/OpenSans/OpenSans-ExtraBold.ttf);
-}
-
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    transition: all .2s;
+}
+
+::selection {
+    background-color: #ff0083;
+    color: white;
 }
 
 body {
     margin: 0;
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Work Sans', 'Poppins', Helvetica, Arial, sans-serif;
     position: relative;
     overflow-x: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: background-color .2s, color .2s;
 }
 
 a {
@@ -67,4 +42,8 @@ a {
 .dark .color-primary-bg,
 .dark.color-primary-bg {
     background-color: #171717;
+}
+
+.dark .-invertable {
+    filter: invert(1);
 }

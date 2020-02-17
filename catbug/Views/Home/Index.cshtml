@@ -2,11 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="portfolio-filtering">
+    <div class="title"></div>
+    <div class="sorting">
+        <div class="description"></div>
+        @foreach (EntryCategory category in Enum.GetValues(typeof(EntryCategory)))
+        {
+            <input type="checkbox" name="category" value="@((int)category)" />
+            <label>@Html.DisplayFor(_ => category)</label>
+        }
+    </div>
 </div>
-
 <div class="portfolio">
     <partial name="_portfolioPartialView" model="ViewBag.entries" />
 </div>

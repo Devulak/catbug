@@ -24,6 +24,9 @@ namespace catbug.Controllers
         public IActionResult Index()
         {
             ViewBag.entries = _context.Entries.ToList();
+
+
+
             return View();
         }
 
