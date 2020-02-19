@@ -3,9 +3,10 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <div class="menu color-primary">
-            <a asp-controller="Entries">Entries</a>
-        </div>
-    }
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="menu color-primary">
+        <a asp-controller="Categories" asp-action="Index">Categories</a>
+        <a asp-controller="Entries" asp-action="Index">Entries</a>
+    </div>
+}

@@ -1,5 +1,9 @@
 ﻿@model catbug.Models.Entry
 
+@using catbug.Data
+
+@inject ApplicationDbContext Context
+
 @{
     ViewData["Title"] = "Edit";
 }
@@ -24,9 +28,19 @@
                 <span asp-validation-for="Context" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category" asp-items="Html.GetEnumSelectList<EntryCategory>()" class="form-control"></select>
-                <span asp-validation-for="Category" class="text-danger"></span>
+                <label asp-for="EntryCategories" class="control-label"></label><br />
+                @foreach (Category category in Context.Categories)
+                {
+                    if (Model.EntryCategories.Any(o => o.CategoryId == category.Id))
+                    {
+                        <input name="categoriesId" type="checkbox" value="@category.Id" checked /> @category.Title<br />
+                    }
+                    else
+                    {
+                        <input name="categoriesId" type="checkbox" value="@category.Id" /> @category.Title<br />
+                    }
+                }
+                <span asp-validation-for="EntryCategories" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

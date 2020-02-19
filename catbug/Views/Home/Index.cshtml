@@ -6,10 +6,10 @@
     <div class="title"></div>
     <div class="sorting">
         <div class="description"></div>
-        @foreach (EntryCategory category in Enum.GetValues(typeof(EntryCategory)))
+        @foreach (Category category in ViewBag.categories)
         {
-            <input type="checkbox" name="category" value="@((int)category)" />
-            <label>@Html.DisplayFor(_ => category)</label>
+            <input type="checkbox" name="category" value="@category.Id" />
+            <label>@category.Title</label>
         }
     </div>
 </div>

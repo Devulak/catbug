@@ -23,6 +23,7 @@ namespace catbug.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.categories = _context.Categories.ToList();
             ViewBag.entries = _context.Entries.ToList();
 
 
