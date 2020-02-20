@@ -1,0 +1,17 @@
+﻿.entry {
+    display: flex;
+}
+
+    .entry .context {
+        flex: 2;
+        white-space: pre-line;
+        margin-bottom: 5rem;
+    }
+
+    .entry .sidebar {
+        flex: 1;
+    }
+
+    .entry .sidebar .date {
+        text-align: right;
+    }

@@ -4,7 +4,7 @@
 
 @foreach (Entry item in Model)
 {
-    <div class="item">
+    <a asp-controller="Entries" asp-action="Details" asp-route-id="@item.Id" class="item">
         <h2>@item.Title</h2>
         <div class="tags">
             @foreach (EntryCategory entryCategory in item.EntryCategories)
@@ -13,5 +13,5 @@
             }
             <span title="@Html.DisplayFor(model => item.Created)">@item.Created.ToSimple()</span>
         </div>
-    </div>
+    </a>
 }

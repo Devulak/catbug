@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace catbug.Controllers
 {
-    [Authorize]
     public class EntriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,6 +21,7 @@ namespace catbug.Controllers
         }
 
         // GET: Entries
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Entries.ToListAsync());
@@ -46,6 +46,7 @@ namespace catbug.Controllers
         }
 
         // GET: Entries/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +57,7 @@ namespace catbug.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Title,Context")] Entry entry, int[] categoriesId)
         {
             categoriesId = categoriesId.Distinct().ToArray();
@@ -83,6 +85,7 @@ namespace catbug.Controllers
         }
 
         // GET: Entries/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,6 +106,7 @@ namespace catbug.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Context")] Entry entry, int[] categoriesId)
         {
             if (id != entry.Id)
@@ -160,6 +164,7 @@ namespace catbug.Controllers
         }
 
         // GET: Entries/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -180,6 +185,7 @@ namespace catbug.Controllers
         // POST: Entries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var entry = await _context.Entries.FindAsync(id);
