@@ -1,4 +1,8 @@
-﻿@{
+﻿@using catbug.Data
+
+@inject ApplicationDbContext Context
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,7 +10,7 @@
     <div class="title"></div>
     <div class="sorting">
         <div class="description"></div>
-        @foreach (Category category in ViewBag.categories)
+        @foreach (Category category in Context.Categories)
         {
             <input type="checkbox" name="category" value="@category.Id" />
             <label>@category.Title</label>
@@ -14,5 +18,5 @@
     </div>
 </div>
 <div class="portfolio">
-    <partial name="_portfolioPartialView" model="ViewBag.entries" />
+    <partial name="_portfolioPartialView" model="Context.Entries.OrderByDescending(o => o.Id).ToList()" />
 </div>

@@ -10,8 +10,21 @@
 
     .entry .sidebar {
         flex: 1;
+        margin-left: 2rem;
     }
 
-    .entry .sidebar .date {
-        text-align: right;
-    }
+        .entry .sidebar .date {
+            text-align: right;
+        }
+
+        .entry .sidebar .categories {
+            margin: 2rem 0;
+        }
+
+            .entry .sidebar .categories .category {
+                border: .125rem solid rgba(127,127,127,.1);
+                margin: 1rem 0;
+                padding: .5rem .75rem;
+                line-height: 1rem;
+                border-radius: 2.25rem;
+            }

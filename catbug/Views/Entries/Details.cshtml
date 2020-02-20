@@ -1,5 +1,9 @@
 ﻿@model catbug.Models.Entry
 
+@using catbug.Data
+
+@inject ApplicationDbContext Context
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -11,6 +15,12 @@
         <div class="context">@Html.DisplayFor(model => model.Context)</div>
         <div class="sidebar">
             <div class="date">@Html.DisplayFor(model => model.Created)</div>
+            <div class="categories">
+                @foreach (EntryCategory entryCategory in Model.EntryCategories)
+                {
+                    <div class="category">@entryCategory.Category.Title</div>
+                }
+            </div>
         </div>
     </div>
 </div>
