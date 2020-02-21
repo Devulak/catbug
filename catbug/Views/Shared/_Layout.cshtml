@@ -1,9 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Name"] = "CatBug";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - catbug</title>
+    @if (@ViewData["Title"] == null)
+    {
+        <title>@ViewData["Name"]</title>
+    }
+    else
+    {
+        <title>@ViewData["Title"] - @ViewData["Name"]</title>
+    }
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,700,800,900&display=swap&subset=latin-ext" rel="stylesheet">
@@ -13,6 +24,7 @@
     <link rel="stylesheet" href="~/css/nav.css">
     <link rel="stylesheet" href="~/css/portfolio.css">
     <link rel="stylesheet" href="~/css/entry.css">
+    <link rel="stylesheet" href="~/css/form.css">
 </head>
 @{
     string darkvision = "";
@@ -57,16 +69,10 @@
                 </div>
             </nav>
         </header>*@
-    @*<div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>*@
     @RenderBody()
-
-    <footer class="border-top footer text-muted">
+    <footer>
         <div class="container">
-            &copy; 2020 - catbug - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @ViewData["name"]. Coded with ❤️ by Devulak/ZeroXitreo. All rights reserved to their respective owners. - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

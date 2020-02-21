@@ -6,15 +6,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="portfolio-filtering">
-    <div class="title"></div>
-    <div class="sorting">
-        <div class="description"></div>
-        @foreach (Category category in Context.Categories)
-        {
-            <input type="checkbox" name="category" value="@category.Id" />
-            <label>@category.Title</label>
-        }
+<div class="color-secondary-bg">
+    <div class="container portfolio-filtering">
+        <div class="title"></div>
+        <div class="sorting">
+            <div class="description"></div>
+            @foreach (Category category in Context.Categories)
+            {
+                <label class="simplecheckbox">
+                    <input type="checkbox" name="category" value="@category.Id" />
+                    <span>@category.Title</span>
+                </label>
+            }
+        </div>
     </div>
 </div>
 <div class="portfolio">

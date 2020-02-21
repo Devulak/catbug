@@ -1,22 +1,38 @@
 .portfolio-filtering {
     display: flex;
+    padding: 1rem 0;
+    color: white;
 }
 
     .portfolio-filtering .title {
     }
 
     .portfolio-filtering .sorting {
+        display: flex;
     }
 
         .portfolio-filtering .sorting .description {
         }
 
-        .portfolio-filtering .sorting input[type=checkbox] {
+        .portfolio-filtering .sorting .simplecheckbox {
+            display: block;
+            margin: unset;
+            cursor: pointer;
+            padding: 0 1rem;
+            color: rgba(255, 255, 255, .75);
         }
 
-            .portfolio-filtering .sorting input[type=checkbox]:checked + label {
-                color: #ff0083;
+            .portfolio-filtering .sorting .simplecheckbox:hover input[type=checkbox] + span {
+                color: white;
             }
+
+            .portfolio-filtering .sorting .simplecheckbox input[type=checkbox] {
+                display: none;
+            }
+
+                .portfolio-filtering .sorting .simplecheckbox input[type=checkbox]:checked + span {
+                    color: #ff0083;
+                }
 
 .portfolio {
     display: flex;

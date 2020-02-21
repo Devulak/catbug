@@ -18,6 +18,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 a {
@@ -44,6 +45,15 @@ a {
     background-color: #171717;
 }
 
+.color-secondary-bg {
+    background-color: #393A3B;
+}
+
+.dark .color-secondary-bg,
+.dark.color-secondary-bg {
+    background-color: #333333;
+}
+
 .dark .-invertable {
     filter: invert(1);
 }
@@ -59,4 +69,16 @@ h1 {
     font-weight: 800;
     font-size: 4rem;
     opacity: .75;
+}
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: -3rem;
+    left: 0;
+    right: 0;
+    padding: 1rem 0;
+    color: white;
+    line-height: 1rem;
+    background-color: #ff0083;
 }
