@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="EntryCategories" class="control-label"></label><br />
-                @foreach (Category category in Context.Categories)
+                @foreach (Category category in Context.Categories.ToList())
                 {
                     if (Model.EntryCategories.Any(o => o.CategoryId == category.Id))
                     {
