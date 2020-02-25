@@ -19,12 +19,12 @@ namespace catbug.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        public IActionResult OnGet(string returnUrl = null)
+        public IActionResult OnGet()
         {
             return NotFound();
         }
 
-        public IActionResult OnPost(string returnUrl = null)
+        public IActionResult OnPost()
         {
             return NotFound();
         }

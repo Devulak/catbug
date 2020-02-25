@@ -86,14 +86,9 @@ namespace catbug.Controllers
 
         // GET: Entries/Edit/5
         [Authorize]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var entry = await _context.Entries.FindAsync(id);
+            Entry entry = await _context.Entries.FindAsync(id);
             if (entry == null)
             {
                 return NotFound();
@@ -113,6 +108,9 @@ namespace catbug.Controllers
             {
                 return NotFound();
             }
+
+            Entry dbEntry = _context.Entries.AsNoTracking().FirstOrDefault(o => o.Id == id);
+            entry.Created = dbEntry.Created;
 
             List<Category> categories = await _context.Categories.ToListAsync();
             categoriesId = categoriesId.Distinct().ToArray();

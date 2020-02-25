@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +21,7 @@ namespace catbug.Models
 
         public virtual List<EntryCategory> EntryCategories { get; set; }
 
+        [BindNever]
         public DateTime Created { get; set; } = DateTime.UtcNow;
     }
 }
