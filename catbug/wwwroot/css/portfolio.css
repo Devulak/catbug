@@ -59,6 +59,10 @@
         overflow: hidden;
     }
 
+        .portfolio .item:focus {
+            outline: none;
+        }
+
         .portfolio .item:before {
             content: "";
             top: 0;
@@ -70,10 +74,19 @@
             position: absolute;
             border-width: 0;
             border-style: solid;
+            z-index: -1;
+        }
+
+        .portfolio .item:focus:before {
+            border-width: .25rem;
         }
 
         .portfolio .item:hover:before {
             border-width: .5rem;
+        }
+
+        .portfolio .item:active:before {
+            border-width: 7.5rem;
         }
 
         .portfolio .item:hover {
