@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using catbug.Models;
 using catbug.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace catbug.Controllers
 {
@@ -21,9 +22,35 @@ namespace catbug.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync(List<int> categoryIds)
         {
-            return View();
+            categoryIds = categoryIds.Distinct().ToList();
+
+            IQueryable<Entry> entries = _context.Entries;
+
+            foreach (Category category in await _context.Categories.ToListAsync())
+            {
+                if (!categoryIds.Any(o => o == category.Id)) // Does the list have any actual categories?
+                {
+                    categoryIds.RemoveAll(o => o == category.Id);
+                }
+            }
+
+            if (categoryIds.Count() != 0)
+            {
+                entries = entries.Where(o => o.EntryCategories.Any(p => categoryIds.Contains(p.CategoryId)));
+            }
+
+            entries = entries.OrderByDescending(o => o.Id);
+
+            ViewBag.categoryIds = categoryIds;
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_portfolioPartialView", await entries.ToListAsync());
+            }
+
+            return View(await entries.ToListAsync());
         }
 
         public IActionResult Privacy()

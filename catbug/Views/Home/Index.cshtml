@@ -1,4 +1,6 @@
-﻿@using catbug.Data
+﻿@model IEnumerable<Entry>
+
+@using catbug.Data
 
 @inject ApplicationDbContext Context
 
@@ -6,21 +8,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="color-secondary-bg">
-    <div class="container portfolio-filtering">
-        <div class="title"></div>
-        <div class="sorting">
-            <div class="description"></div>
-            @foreach (Category category in Context.Categories)
-            {
-                <label class="simplecheckbox">
-                    <input type="checkbox" name="category" value="@category.Id" />
-                    <span>@category.Title</span>
-                </label>
-            }
-        </div>
-    </div>
+<div class="container">
+    <form class="sorting LiveForm" data-container="portfolio" method="post">
+        @foreach (Category category in Context.Categories)
+        {
+            <label class="simplecheckbox">
+                <input type="checkbox" name="categoryIds" value="@category.Id" @(ViewBag.categoryIds.Contains(category.Id) ? "checked" : "") />
+                <span>@category.Title</span>
+            </label>
+        }
+    </form>
 </div>
-<div class="portfolio">
-    <partial name="_portfolioPartialView" model="Context.Entries.OrderByDescending(o => o.Id).ToList()" />
+<div class="portfolio" id="portfolio">
+    <partial name="_portfolioPartialView" model="Model" />
 </div>

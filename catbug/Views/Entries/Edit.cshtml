@@ -8,51 +8,53 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="container">
+    <h1>Edit</h1>
 
-<h4>Entry</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Context" class="control-label"></label>
-                <textarea asp-for="Context" class="form-control"></textarea>
-                <span asp-validation-for="Context" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EntryCategories" class="control-label"></label><br />
-                @foreach (Category category in Context.Categories.ToList())
-                {
-                    if (Model.EntryCategories.Any(o => o.CategoryId == category.Id))
+    <h4>Entry</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Context" class="control-label"></label>
+                    <textarea asp-for="Context" class="form-control"></textarea>
+                    <span asp-validation-for="Context" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EntryCategories" class="control-label"></label><br />
+                    @foreach (Category category in Context.Categories.ToList())
                     {
-                        <input name="categoriesId" type="checkbox" value="@category.Id" checked /> @category.Title<br />
+                        if (Model.EntryCategories.Any(o => o.CategoryId == category.Id))
+                        {
+                            <input name="categoriesId" type="checkbox" value="@category.Id" checked /> @category.Title<br />
+                        }
+                        else
+                        {
+                            <input name="categoriesId" type="checkbox" value="@category.Id" /> @category.Title<br />
+                        }
                     }
-                    else
-                    {
-                        <input name="categoriesId" type="checkbox" value="@category.Id" /> @category.Title<br />
-                    }
-                }
-                <span asp-validation-for="EntryCategories" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                    <span asp-validation-for="EntryCategories" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

@@ -1,38 +1,42 @@
-.portfolio-filtering {
+.sorting {
     display: flex;
-    padding: 1rem 0;
-    color: white;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -.5rem -1rem;
 }
 
-    .portfolio-filtering .title {
+    .sorting .simplecheckbox {
+        display: block;
+        cursor: pointer;
+        margin: .5rem 1rem;
+        border-radius: 1.225rem;
     }
 
-    .portfolio-filtering .sorting {
-        display: flex;
-    }
-
-        .portfolio-filtering .sorting .description {
+        .sorting .simplecheckbox input[type=checkbox] {
+            display: none;
         }
 
-        .portfolio-filtering .sorting .simplecheckbox {
-            display: block;
-            margin: unset;
-            cursor: pointer;
-            padding: 0 1rem;
-            color: rgba(255, 255, 255, .75);
-        }
-
-            .portfolio-filtering .sorting .simplecheckbox:hover input[type=checkbox] + span {
-                color: white;
+            .sorting .simplecheckbox input[type=checkbox] + span {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: .8rem;
+                letter-spacing: .1rem;
+                border: .125rem solid currentColor;
+                border-radius: inherit;
+                line-height: 1.2rem;
+                opacity: .25;
+                padding: .5rem 1rem;
+                display: block;
             }
 
-            .portfolio-filtering .sorting .simplecheckbox input[type=checkbox] {
-                display: none;
+            .sorting .simplecheckbox input[type=checkbox]:checked + span {
+                color: #ff0083;
+                opacity: .75;
             }
 
-                .portfolio-filtering .sorting .simplecheckbox input[type=checkbox]:checked + span {
-                    color: #ff0083;
-                }
+            .sorting .simplecheckbox input[type=checkbox] + span:hover {
+                opacity: 1;
+            }
 
 .portfolio {
     display: flex;
@@ -57,6 +61,7 @@
         box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
         position: relative;
         overflow: hidden;
+        animation: portfolio-item 1s;
     }
 
         .portfolio .item:focus {
@@ -155,6 +160,8 @@
         }
 
         .portfolio .item .tags {
+            display: flex;
+            justify-content: center;
         }
 
             .portfolio .item .tags > span {
@@ -167,3 +174,15 @@
                     content: '•';
                     margin: 0 .5em;
                 }
+
+@keyframes portfolio-item {
+    0% {
+        opacity: 0;
+        transform: perspective(1000px) translateY(20px) rotateX(50deg);
+    }
+
+    100% {
+        opacity: inherit;
+        transform: inherit;
+    }
+}
