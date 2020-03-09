@@ -24,7 +24,7 @@ namespace catbug.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Entries.ToListAsync());
+            return View(await _context.Entries.OrderByDescending(o => o.Id).ToListAsync());
         }
 
         // GET: Entries/Details/5
