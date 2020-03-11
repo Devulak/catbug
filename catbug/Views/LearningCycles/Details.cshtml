@@ -1,0 +1,49 @@
+﻿@model catbug.Models.LearningCycle
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>LearningCycle</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+        </dl>
+        <table class="table">
+            <thead>
+                <tr>
+                    @{LearningObjective lo = new LearningObjective();}
+                    <th scope="col">@Html.DisplayNameFor(model => lo.Goal)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => lo.Techniques)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => lo.Criteria)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => lo.Completed)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => lo.Evaulation)</th>
+                </tr>
+            </thead>
+            @foreach (LearningObjective learningObjective in Model.LearningObjectives)
+            {
+                <tr>
+                    <td>@learningObjective.Goal</td>
+                    <td>@learningObjective.Techniques</td>
+                    <td>@learningObjective.Criteria</td>
+                    <td>@learningObjective.Completed</td>
+                    <td>@learningObjective.Evaulation</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

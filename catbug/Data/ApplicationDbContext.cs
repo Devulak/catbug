@@ -12,6 +12,8 @@ namespace catbug.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Entry> Entries { get; set; }
         public DbSet<EntryCategory> EntryCategories { get; set; }
+        public DbSet<LearningCycle> LearningCycles { get; set; }
+        public DbSet<LearningObjective> LearningObjectives { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

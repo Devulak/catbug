@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using catbug.Data;
 
 namespace catbug.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200310210557_RemoveTimeOnCycle")]
+    partial class RemoveTimeOnCycle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -287,10 +289,15 @@ namespace catbug.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("LearningCycleId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LearningCycleId");
 
                     b.ToTable("LearningCycles");
                 });
@@ -301,9 +308,6 @@ namespace catbug.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Completed")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Criteria")
                         .HasColumnType("nvarchar(max)");
@@ -317,7 +321,7 @@ namespace catbug.Data.Migrations
                     b.Property<int>("LearningCycleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Techniques")
+                    b.Property<string>("Tools")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -393,10 +397,17 @@ namespace catbug.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("catbug.Models.LearningCycle", b =>
+                {
+                    b.HasOne("catbug.Models.LearningCycle", null)
+                        .WithMany("LearningCycles")
+                        .HasForeignKey("LearningCycleId");
+                });
+
             modelBuilder.Entity("catbug.Models.LearningObjective", b =>
                 {
                     b.HasOne("catbug.Models.LearningCycle", "LearningCycle")
-                        .WithMany("LearningObjectives")
+                        .WithMany()
                         .HasForeignKey("LearningCycleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
