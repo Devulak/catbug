@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using catbug.Data;
 using catbug.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace catbug.Controllers
 {
@@ -19,12 +20,14 @@ namespace catbug.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: LearningCycles
         public async Task<IActionResult> Index()
         {
             return View(await _context.LearningCycles.ToListAsync());
         }
 
+        [Authorize]
         // GET: LearningCycles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +46,12 @@ namespace catbug.Controllers
             return View(learningCycle);
         }
 
+        public async Task<IActionResult> List()
+        {
+            return View(await _context.LearningCycles.OrderByDescending(o => o.Id).ToListAsync());
+        }
+
+        [Authorize]
         // GET: LearningCycles/Create
         public IActionResult Create()
         {
@@ -52,6 +61,7 @@ namespace catbug.Controllers
         // POST: LearningCycles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,StartDate")] LearningCycle learningCycle)
@@ -66,6 +76,7 @@ namespace catbug.Controllers
         }
 
         // GET: LearningCycles/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +97,7 @@ namespace catbug.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,StartDate")] LearningCycle learningCycle)
         {
             if (id != learningCycle.Id)
@@ -117,6 +129,7 @@ namespace catbug.Controllers
         }
 
         // GET: LearningCycles/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +150,7 @@ namespace catbug.Controllers
         // POST: LearningCycles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var learningCycle = await _context.LearningCycles.FindAsync(id);

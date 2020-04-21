@@ -1,0 +1,12 @@
+﻿@model IEnumerable<LearningCycle>
+
+@{
+    ViewData["Title"] = "Learning Cycles";
+}
+
+    <div class="container">
+        @foreach (LearningCycle learningCycle in Model)
+        {
+            <partial name="Details" model="learningCycle" />
+        }
+    </div>
